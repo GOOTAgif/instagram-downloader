@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #fbfbfd;
+  color: #14161a;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Ambient background glows — fixed so they read as one continuous field
+   behind the header, hero and content rather than per-section decoration. */
+.bg-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-glow::before,
+.bg-glow::after,
+.bg-glow span {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.55;
+}
+
+.bg-glow::before {
+  width: 42rem;
+  height: 42rem;
+  top: -14rem;
+  left: -10rem;
+  background: radial-gradient(circle at 30% 30%, #cfe0ff 0%, rgba(207, 224, 255, 0) 70%);
+}
+
+.bg-glow::after {
+  width: 38rem;
+  height: 38rem;
+  top: -8rem;
+  right: -12rem;
+  background: radial-gradient(circle at 70% 30%, #c9f5e6 0%, rgba(201, 245, 230, 0) 70%);
+}
+
+.bg-glow span {
+  width: 34rem;
+  height: 34rem;
+  top: 14rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, #e6ddff 0%, rgba(230, 221, 255, 0) 72%);
+  opacity: 0.4;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.glass-solid {
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* Visible keyboard focus everywhere, independent of mouse hover styles */
+:focus-visible {
+  outline: 2px solid #2f6fed;
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Line-clamp-free scrollbar tidy-up for the result card on small screens */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
